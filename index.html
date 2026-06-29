@@ -3,26 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seguimiento de calidad · Trackers</title>
+<title>Avance del proyecto · Trackers</title>
 <style>
   :root{
     --ink:#21242b; --ink-2:#646973; --ink-3:#9a9ea6;
     --bg:#f4f3ef; --surface:#ffffff; --border:#e5e3db; --border-2:#d8d6cd;
-    --done:#1d9e75; --done-d:#0f6e56; --done-bg:#e1f5ee;
-    --pend:#d3d1c7; --pend-track:#ecebe4;
-    --block:#ef9f27; --block-d:#854f0b; --block-bg:#faeeda;
-    --accent:#0f6e56;
+    --track:#ecebe4; --block:#ef9f27; --block-d:#854f0b; --block-bg:#faeeda;
+    --accent:#0f6e56; --accent-bg:#e1f5ee;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{-webkit-text-size-adjust:100%;}
-  body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    background:var(--bg); color:var(--ink); line-height:1.5;
-    font-variant-numeric:tabular-nums lining-nums;
-  }
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.5; font-variant-numeric:tabular-nums lining-nums;}
   .wrap{max-width:1080px; margin:0 auto; padding:0 20px 64px;}
 
-  /* Header */
   header{background:var(--ink); color:#fff; padding:22px 0 20px;}
   .header-inner{max-width:1080px; margin:0 auto; padding:0 20px; display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:16px;}
   .title{font-size:19px; font-weight:600; letter-spacing:-0.01em;}
@@ -32,69 +26,103 @@
   .global .num{font-size:26px; font-weight:600; line-height:1; letter-spacing:-0.02em;}
   .global .lbl{font-size:11px; color:#b6bac2; text-transform:uppercase; letter-spacing:0.06em; margin-top:5px;}
 
-  /* Tabs */
-  .tabs{display:flex; gap:6px; flex-wrap:wrap; padding:18px 0 4px; border-bottom:1px solid var(--border); margin-bottom:24px;}
-  .tab{
-    appearance:none; border:1px solid var(--border-2); background:var(--surface);
-    border-radius:10px; padding:9px 14px 8px; cursor:pointer; min-width:118px; text-align:left;
-    transition:border-color .12s, background .12s; color:var(--ink); font-family:inherit;
-  }
+  .toolbar{display:flex; justify-content:flex-end; padding:14px 0 0;}
+  .btn{appearance:none; font-family:inherit; font-size:13px; font-weight:600; cursor:pointer;
+    border:1px solid var(--border-2); background:var(--surface); color:var(--ink);
+    border-radius:9px; padding:8px 14px; transition:border-color .12s, background .12s;}
+  .btn:hover{border-color:var(--accent);}
+  .btn.primary{background:var(--accent); border-color:var(--accent); color:#fff;}
+  .btn.primary:hover{background:#0c5a47;}
+
+  .tabs{display:flex; gap:6px; flex-wrap:wrap; padding:14px 0 4px; border-bottom:1px solid var(--border); margin-bottom:24px;}
+  .tab{appearance:none; border:1px solid var(--border-2); background:var(--surface); border-radius:10px;
+    padding:9px 14px 8px; cursor:pointer; min-width:118px; text-align:left; transition:border-color .12s; color:var(--ink); font-family:inherit;}
   .tab:hover{border-color:var(--accent);}
   .tab.active{border-color:var(--ink); border-width:1.5px;}
+  .tab.resumen{min-width:auto;}
   .tab .t-name{font-size:14px; font-weight:600;}
   .tab .t-sub{font-size:11px; color:var(--ink-3); margin:2px 0 7px;}
-  .tab .t-bar{height:5px; border-radius:3px; background:var(--pend-track); overflow:hidden;}
-  .tab .t-fill{height:100%; background:var(--done); border-radius:3px;}
-  .tab.tab-empty .t-fill{background:var(--pend);}
+  .tab .t-bar{height:5px; border-radius:3px; background:var(--track); overflow:hidden;}
+  .tab .t-fill{height:100%; background:var(--accent); border-radius:3px;}
 
-  /* Panel */
-  .panel{display:none;}
-  .panel.active{display:block;}
-  .panel-head{display:flex; align-items:baseline; gap:12px; margin-bottom:20px; flex-wrap:wrap;}
+  .panel{display:none;} .panel.active{display:block;}
+
+  .hero{display:flex; align-items:baseline; gap:14px; margin-bottom:6px;}
+  .hero .big{font-size:52px; font-weight:700; letter-spacing:-0.03em; line-height:1;}
+  .hero .big-lbl{font-size:14px; color:var(--ink-2);}
+  .hero-sub{font-size:13px; color:var(--ink-3); margin-bottom:24px;}
+  .section-t{font-size:13px; font-weight:600; color:var(--ink-2); margin:0 0 12px;}
+  .dist{display:flex; height:30px; border-radius:8px; overflow:hidden; border:1px solid var(--border); margin-bottom:10px;}
+  .dist span{display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; min-width:0;}
+  .dist-legend{display:flex; flex-wrap:wrap; gap:6px 14px; font-size:11px; color:var(--ink-2); margin-bottom:30px;}
+  .dist-legend .lg{display:flex; align-items:center; gap:6px;} .dist-legend .sw{width:11px; height:11px; border-radius:3px;}
+
+  .flist{display:flex; flex-direction:column; gap:10px;}
+  .frow{display:grid; grid-template-columns:120px 1fr 48px; align-items:center; gap:14px; background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:11px 14px;}
+  .frow .fn{font-size:14px; font-weight:600;} .frow .fn small{display:block; font-size:11px; color:var(--ink-3); font-weight:400;}
+  .frow .mini{display:flex; gap:2px; height:14px;} .frow .mini span{flex:1; border-radius:2px; background:var(--track);}
+  .frow .fpct{font-size:15px; font-weight:600; text-align:right;}
+
+  .panel-head{display:flex; align-items:baseline; gap:12px; margin-bottom:6px; flex-wrap:wrap;}
   .panel-head h2{font-size:22px; font-weight:600; letter-spacing:-0.02em;}
   .panel-head .meta{font-size:13px; color:var(--ink-2);}
-  .badge-ej{font-size:11px; font-weight:600; color:var(--block-d); background:var(--block-bg); padding:3px 9px; border-radius:20px; letter-spacing:.02em;}
+  .badge-ej{font-size:11px; font-weight:600; color:var(--block-d); background:var(--block-bg); padding:3px 9px; border-radius:20px;}
+  .seq-note{font-size:12px; color:var(--ink-3); margin-bottom:22px;}
 
-  /* Hito cards */
-  .hitos{display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:12px; margin-bottom:26px;}
-  .hcard{background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:15px 16px 14px;}
-  .hcard .h-grp{font-size:11px; font-weight:600; color:var(--ink-3); text-transform:uppercase; letter-spacing:.07em;}
-  .hcard .h-lbl{font-size:13px; color:var(--ink-2); margin-top:1px;}
-  .hcard .h-val{font-size:23px; font-weight:600; margin:8px 0 9px; letter-spacing:-0.02em;}
-  .hcard .h-val .of{font-size:13px; font-weight:400; color:var(--ink-3);}
-  .hcard .h-track{height:6px; border-radius:3px; background:var(--pend-track); overflow:hidden;}
-  .hcard .h-fill{height:100%; background:var(--done); border-radius:3px;}
-  .hcard .h-note{font-size:11px; color:var(--ink-3); margin-top:7px;}
-  .hcard.confirm .h-val{color:var(--ink-3);}
+  .funnel{display:flex; flex-direction:column; gap:8px; margin-bottom:30px;}
+  .step{display:grid; grid-template-columns:26px 1fr; gap:12px; align-items:center;}
+  .step .sn{width:26px; height:26px; border-radius:50%; background:var(--accent); color:#fff; font-size:13px; font-weight:600; display:flex; align-items:center; justify-content:center;}
+  .step.confirm .sn{background:var(--ink-3);}
+  .step .sbody{min-width:0;}
+  .step .srow{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:5px;}
+  .step .slbl{font-size:13px;} .step .slbl b{font-weight:600;} .step .slbl span{color:var(--ink-3);}
+  .step .sval{font-size:13px; font-weight:600;} .step .sval .of{color:var(--ink-3); font-weight:400;}
+  .step .sbar{height:9px; border-radius:5px; background:var(--track); overflow:hidden;}
+  .step .sfill{height:100%; border-radius:5px;}
 
-  /* Tracker grid */
   .grid-title{font-size:13px; font-weight:600; color:var(--ink-2); margin-bottom:12px;}
-  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(48px,1fr)); gap:9px;}
-  .tr{border:1px solid var(--border); border-radius:8px; background:var(--surface); overflow:hidden;}
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(54px,1fr)); gap:9px;}
+  .tr{border:1px solid var(--border); border-radius:8px; background:var(--surface); overflow:hidden; padding-bottom:4px;}
   .tr.blocked{border-color:var(--block);}
-  .tr .tr-n{text-align:center; font-size:10px; color:var(--ink-2); padding:4px 0 2px; font-weight:500;}
-  .tr .tr-seg{display:flex; gap:1.5px; height:19px; padding:0 3px 4px;}
-  .tr .tr-seg span{flex:1; border-radius:1px;}
+  .tr .tr-top{display:flex; justify-content:space-between; align-items:center; padding:4px 6px 3px; font-size:10px; color:var(--ink-2);}
+  .tr .tr-top b{font-weight:600;}
+  .tr .tr-seg{display:flex; gap:1.5px; height:10px; padding:0 4px;}
+  .tr .tr-seg span{flex:1; border-radius:1px; background:var(--track);}
 
-  /* Legend */
-  .legend{display:flex; flex-wrap:wrap; gap:18px; margin-top:20px; font-size:12px; color:var(--ink-2); align-items:center;}
-  .legend .lg{display:flex; align-items:center; gap:7px;}
-  .legend .sw{width:12px; height:12px; border-radius:3px; display:inline-block;}
-  .order-note{font-size:11px; color:var(--ink-3); margin-top:10px;}
+  .legend{display:flex; flex-wrap:wrap; gap:6px 14px; margin-top:20px; font-size:11px; color:var(--ink-2);}
+  .legend .lg{display:flex; align-items:center; gap:6px;} .legend .sw{width:11px; height:11px; border-radius:3px;}
+
+  /* Editor */
+  .editor{display:none; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px 18px 16px; margin:18px 0 4px;}
+  .editor.open{display:block;}
+  .editor h3{font-size:15px; font-weight:600; margin-bottom:4px;}
+  .editor .ed-help{font-size:12px; color:var(--ink-3); margin-bottom:14px;}
+  .ed-scroll{overflow-x:auto; margin-bottom:14px;}
+  table.ed{border-collapse:collapse; width:100%; min-width:620px;}
+  table.ed th{font-size:10px; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-3); font-weight:600; padding:0 6px 8px; text-align:center; white-space:nowrap;}
+  table.ed th.l{text-align:left;}
+  table.ed td{padding:3px 6px; text-align:center;}
+  table.ed input[type=number],table.ed input[type=text]{width:54px; font-family:inherit; font-size:13px; text-align:center;
+    border:1px solid var(--border-2); border-radius:7px; padding:6px 4px; background:#fff; color:var(--ink); font-variant-numeric:tabular-nums;}
+  table.ed input.id{width:48px;} table.ed input.total{width:54px;}
+  table.ed input:focus{outline:none; border-color:var(--accent);}
+  table.ed .warn input{border-color:var(--block);}
+  .ed-del{appearance:none; border:none; background:transparent; cursor:pointer; color:var(--ink-3); font-size:16px; line-height:1; padding:4px;}
+  .ed-del:hover{color:#c0392b;}
+  .ed-actions{display:flex; gap:8px; flex-wrap:wrap; align-items:center;}
+  .ed-msg{font-size:12px; color:var(--accent); margin-left:4px;}
+  .ed-warn-txt{font-size:12px; color:var(--block-d); margin-top:8px; display:none;}
+  .ed-warn-txt.show{display:block;}
 
   .footer-note{margin-top:34px; padding-top:18px; border-top:1px solid var(--border); font-size:12px; color:var(--ink-3);}
+  .banner{background:var(--block-bg); color:var(--block-d); font-size:12px; padding:8px 12px; border-radius:8px; margin:14px 0 0; display:none;}
+  .banner.show{display:block;}
 
-  @media (max-width:560px){
-    .global{gap:18px;} .global .num{font-size:22px;}
-    .tab{min-width:104px;}
-  }
+  @media (max-width:560px){ .global .num{font-size:22px;} .hero .big{font-size:42px;} .frow{grid-template-columns:88px 1fr 42px; gap:10px;} }
   @media print{
-    body{background:#fff;}
-    header{background:#fff; color:var(--ink); border-bottom:2px solid var(--ink);}
-    .subtitle,.global .lbl{color:var(--ink-2);}
-    .tabs{display:none;}
+    body{background:#fff;} header{background:#fff; color:var(--ink); border-bottom:2px solid var(--ink);}
+    .subtitle,.global .lbl{color:var(--ink-2);} .tabs,.toolbar,.editor{display:none !important;}
     .panel{display:block !important; page-break-after:always; padding-top:18px;}
-    .tab{box-shadow:none;}
   }
 </style>
 </head>
@@ -102,146 +130,192 @@
 <header>
   <div class="header-inner">
     <div>
-      <div class="title">Seguimiento de calidad · Trackers</div>
-      <div class="subtitle">Liberación por hitos · estructura y módulos · interna y externa</div>
+      <div class="title">Avance del proyecto · Trackers</div>
+      <div class="subtitle">6 hitos secuenciales · estructura → módulos</div>
     </div>
     <div class="global" id="global"></div>
   </div>
 </header>
 
 <div class="wrap">
+  <div class="toolbar"><button class="btn" id="editToggle">Editar datos</button></div>
+  <div class="banner" id="banner">No se encontró <b>datos.js</b>, se muestran datos de ejemplo. Sube el archivo <b>datos.js</b> junto a este HTML.</div>
+
+  <div class="editor" id="editor">
+    <h3>Editar datos</h3>
+    <div class="ed-help">Escribe el nº de trackers que han completado cada paso. Deja la casilla vacía si aún no hay dato. Al terminar, descarga <b>datos.js</b> y súbelo al repositorio.</div>
+    <div class="ed-scroll">
+      <table class="ed">
+        <thead><tr>
+          <th class="l">Campo</th><th>Total</th>
+          <th>1 · Mont. estr.</th><th>2 · Lib.int estr.</th><th>3 · Lib.ext estr.</th>
+          <th>4 · Mont. mód.</th><th>5 · Lib.int mód.</th><th>6 · Lib.ext mód.</th>
+          <th>Ej.</th><th></th>
+        </tr></thead>
+        <tbody id="edBody"></tbody>
+      </table>
+    </div>
+    <div class="ed-actions">
+      <button class="btn" id="edAdd">+ Añadir campo</button>
+      <button class="btn" id="edApply">Ver cambios</button>
+      <button class="btn primary" id="edDownload">Descargar datos.js</button>
+      <button class="btn" id="edCopy">Copiar</button>
+      <span class="ed-msg" id="edMsg"></span>
+    </div>
+    <div class="ed-warn-txt" id="edWarn"></div>
+  </div>
+
   <nav class="tabs" id="tabs"></nav>
   <div id="panels"></div>
   <div class="footer-note" id="foot"></div>
 </div>
 
 <script>
-/* ============================================================
-   DATOS — edita aquí. Una entrada por campo.
-   total       = nº total de trackers del campo
-   ei / ee     = trackers liberados en ESTRUCTURA interna / externa
-   mi / me     = trackers liberados en MÓDULOS interna / externa
-                 (usa null si aún no hay dato → aparece "por confirmar")
-   sinMontar   = trackers sin montar (no avanzan en ningún hito)
-   ejemplo     = true para marcar el campo como dato de muestra
-   ============================================================ */
-const FIELDS = [
-  { id:21, total:51, ei:47, ee:47, mi:null, me:null, sinMontar:4 },
-  { id:22, total:60, ei:38, ee:30, mi:12,  me:6,    sinMontar:9,  ejemplo:true },
-  { id:23, total:44, ei:20, ee:14, mi:null, me:null, sinMontar:15, ejemplo:true },
-];
+const STEPS=[
+  {grp:'Estructura',lbl:'Montaje'},{grp:'Estructura',lbl:'Liberación interna'},{grp:'Estructura',lbl:'Liberación externa'},
+  {grp:'Módulos',lbl:'Montaje'},{grp:'Módulos',lbl:'Liberación interna'},{grp:'Módulos',lbl:'Liberación externa'}];
+const STAGE_COL=['#ef9f27','#9fe1cb','#6fd0b0','#3fbe94','#1d9e75','#14805f','#0f6e56'];
+const STAGE_TXT=['#854f0b','#0f6e56','#0f6e56','#0f6e56','#fff','#fff','#fff'];
+const STAGE_LBL=['Sin montar','1 · Montaje estr.','2 · Lib. int. estr.','3 · Lib. ext. estr.','4 · Montaje mód.','5 · Lib. int. mód.','6 · Completo'];
 
-const HITOS = [
-  { key:'ei', grp:'Estructura', lbl:'Interna' },
-  { key:'ee', grp:'Estructura', lbl:'Externa' },
-  { key:'mi', grp:'Módulos',    lbl:'Interna' },
-  { key:'me', grp:'Módulos',    lbl:'Externa' },
-];
+const FALLBACK=[{id:21,total:51,counts:[47,47,47,null,null,null]},{id:22,total:60,counts:[51,48,45,30,22,15],ejemplo:true},{id:23,total:44,counts:[44,40,38,25,18,9],ejemplo:true}];
+let DATA = (window.DATOS && Array.isArray(window.DATOS) && window.DATOS.length) ? JSON.parse(JSON.stringify(window.DATOS)) : JSON.parse(JSON.stringify(FALLBACK));
+if(!(window.DATOS && Array.isArray(window.DATOS) && window.DATOS.length)) document.getElementById('banner').classList.add('show');
 
-const C = { done:'var(--done)', pend:'var(--pend)', block:'var(--block)' };
+const v=x=>(x===null||x===undefined||x==='')?0:Number(x);
+const doneSteps=f=>f.counts.reduce((a,c)=>a+v(c),0);
+const fpct=f=>Math.round(doneSteps(f)/(f.total*6)*100);
+function stage(f,i){let s=0;for(const c of f.counts){if(i<v(c))s++;else break;}return s;}
 
-function fieldDone(f){
-  /* trackers que han completado los 4 hitos disponibles */
-  const vals = HITOS.map(h=>f[h.key]).filter(v=>v!==null);
-  return vals.length ? Math.min(...vals) : 0;
-}
-function fieldPct(f){
-  const denom = f.total*4 || 1;
-  const sum = HITOS.reduce((a,h)=> a + (f[h.key]===null?0:f[h.key]), 0);
-  return Math.round(sum/denom*100);
-}
+const tabsEl=document.getElementById('tabs'), panelsEl=document.getElementById('panels'), globalEl=document.getElementById('global');
 
-/* ---- Global summary ---- */
-(function(){
-  const totalTrackers = FIELDS.reduce((a,f)=>a+f.total,0);
-  const totalCells = totalTrackers*4;
-  const doneCells = FIELDS.reduce((a,f)=> a + HITOS.reduce((b,h)=> b+(f[h.key]===null?0:f[h.key]),0), 0);
-  const pct = totalCells? Math.round(doneCells/totalCells*100):0;
-  document.getElementById('global').innerHTML =
-    '<div class="stat"><div class="num">'+FIELDS.length+'</div><div class="lbl">Campos</div></div>'+
-    '<div class="stat"><div class="num">'+totalTrackers+'</div><div class="lbl">Trackers</div></div>'+
+function render(active){
+  globalEl.innerHTML=''; tabsEl.innerHTML=''; panelsEl.innerHTML='';
+  const totalTr=DATA.reduce((a,f)=>a+Number(f.total||0),0);
+  const done=DATA.reduce((a,f)=>a+doneSteps(f),0);
+  const pct=totalTr?Math.round(done/(totalTr*6)*100):0;
+  globalEl.innerHTML='<div class="stat"><div class="num">'+DATA.length+'</div><div class="lbl">Campos</div></div>'+
+    '<div class="stat"><div class="num">'+totalTr+'</div><div class="lbl">Trackers</div></div>'+
     '<div class="stat"><div class="num">'+pct+'%</div><div class="lbl">Avance global</div></div>';
-})();
 
-/* ---- Tabs ---- */
-const tabsEl = document.getElementById('tabs');
-const panelsEl = document.getElementById('panels');
+  const rtab=document.createElement('button'); rtab.className='tab resumen';
+  rtab.innerHTML='<div class="t-name">Resumen general</div>'; rtab.onclick=()=>select(0);
+  tabsEl.appendChild(rtab); panelsEl.appendChild(buildResumen(totalTr,done,pct));
 
-FIELDS.forEach((f, idx)=>{
-  const pct = fieldPct(f);
-  const tab = document.createElement('button');
-  tab.className = 'tab'+(idx===0?' active':'')+(pct===0?' tab-empty':'');
-  tab.innerHTML =
-    '<div class="t-name">Campo '+f.id+'</div>'+
-    '<div class="t-sub">'+f.total+' trackers · '+pct+'%</div>'+
-    '<div class="t-bar"><div class="t-fill" style="width:'+pct+'%"></div></div>';
-  tab.onclick = ()=>select(idx);
-  tabsEl.appendChild(tab);
-  panelsEl.appendChild(buildPanel(f, idx===0));
-});
-
-function select(idx){
-  [...tabsEl.children].forEach((t,i)=>t.classList.toggle('active', i===idx));
-  [...panelsEl.children].forEach((p,i)=>p.classList.toggle('active', i===idx));
-}
-
-function buildPanel(f, active){
-  const done = fieldDone(f);
-  const panel = document.createElement('section');
-  panel.className = 'panel'+(active?' active':'');
-
-  /* head */
-  const ej = f.ejemplo ? '<span class="badge-ej">ejemplo</span>' : '';
-  let html = '<div class="panel-head"><h2>Campo '+f.id+'</h2>'+
-    '<span class="meta">'+f.total+' trackers · '+f.sinMontar+' sin montar · '+done+' completos en los 4 hitos</span>'+ej+'</div>';
-
-  /* hito cards */
-  html += '<div class="hitos">';
-  HITOS.forEach(h=>{
-    const v = f[h.key];
-    const confirm = v===null;
-    const pct = confirm?0:Math.round(v/f.total*100);
-    html += '<div class="hcard'+(confirm?' confirm':'')+'">'+
-      '<div class="h-grp">'+h.grp+'</div>'+
-      '<div class="h-lbl">'+h.lbl+'</div>'+
-      '<div class="h-val">'+(confirm?'—':v)+'<span class="of"> / '+f.total+'</span></div>'+
-      '<div class="h-track"><div class="h-fill" style="width:'+pct+'%"></div></div>'+
-      '<div class="h-note">'+(confirm?'por confirmar':pct+'%')+'</div>'+
-    '</div>';
+  DATA.forEach((f,idx)=>{
+    const p=fpct(f);
+    const tab=document.createElement('button'); tab.className='tab';
+    tab.innerHTML='<div class="t-name">Campo '+f.id+'</div><div class="t-sub">'+f.total+' trackers · '+p+'%</div>'+
+      '<div class="t-bar"><div class="t-fill" style="width:'+p+'%"></div></div>';
+    tab.onclick=()=>select(idx+1);
+    tabsEl.appendChild(tab); panelsEl.appendChild(buildField(f));
   });
-  html += '</div>';
-
-  /* grid */
-  html += '<div class="grid-title">Detalle por tracker</div><div class="grid">';
-  for(let i=0;i<f.total;i++){
-    const n=i+1;
-    const blocked = i >= f.total - f.sinMontar;
-    let segs='';
-    HITOS.forEach(h=>{
-      const v=f[h.key];
-      let c=C.pend;
-      if(blocked) c=C.block;
-      else if(v!==null && i<v) c=C.done;
-      segs+='<span style="background:'+c+'"></span>';
-    });
-    html += '<div class="tr'+(blocked?' blocked':'')+'"><div class="tr-n">'+n+'</div><div class="tr-seg">'+segs+'</div></div>';
-  }
-  html += '</div>';
-
-  /* legend */
-  html += '<div class="legend">'+
-    '<span class="lg"><span class="sw" style="background:var(--done)"></span>Liberado</span>'+
-    '<span class="lg"><span class="sw" style="background:var(--pend)"></span>Pendiente</span>'+
-    '<span class="lg"><span class="sw" style="background:var(--block)"></span>Sin montar</span>'+
-  '</div>'+
-  '<div class="order-note">Orden de los 4 segmentos en cada tracker: estructura interna · estructura externa · módulos interna · módulos externa</div>';
-
-  panel.innerHTML = html;
-  return panel;
+  select(active||0);
+}
+function select(i){
+  [...tabsEl.children].forEach((t,k)=>t.classList.toggle('active',k===i));
+  [...panelsEl.children].forEach((p,k)=>p.classList.toggle('active',k===i));
 }
 
-document.getElementById('foot').textContent =
-  'Edita el bloque DATOS al inicio del archivo para actualizar cada campo. Usa Ctrl/Cmd+P para imprimir o guardar en PDF (un campo por página).';
+function buildResumen(totalTr,done,pct){
+  const p=document.createElement('section'); p.className='panel';
+  const buckets=[0,0,0,0,0,0,0];
+  DATA.forEach(f=>{for(let i=0;i<f.total;i++)buckets[stage(f,i)]++;});
+  let dist='',leg='';
+  buckets.forEach((c,s)=>{ if(!c)return; const w=(c/totalTr*100);
+    dist+='<span title="'+STAGE_LBL[s]+': '+c+'" style="width:'+w+'%;background:'+STAGE_COL[s]+';color:'+STAGE_TXT[s]+'">'+(w>6?c:'')+'</span>';
+    leg+='<span class="lg"><span class="sw" style="background:'+STAGE_COL[s]+'"></span>'+STAGE_LBL[s]+' ('+c+')</span>'; });
+  let rows='';
+  DATA.forEach(f=>{ let mini='';
+    for(let s=0;s<6;s++){const c=f.counts[s]; const fl=(c!==null&&c!==''&&Number(c)>0); mini+='<span style="background:'+(fl?STAGE_COL[s+1]:'var(--track)')+'"></span>';}
+    rows+='<div class="frow"><div class="fn">Campo '+f.id+(f.ejemplo?' <small>ejemplo</small>':' <small>'+f.total+' trackers</small>')+'</div><div class="mini">'+mini+'</div><div class="fpct">'+fpct(f)+'%</div></div>'; });
+  p.innerHTML='<div class="hero"><div class="big">'+pct+'%</div><div class="big-lbl">avance total del proyecto</div></div>'+
+    '<div class="hero-sub">'+done+' de '+(totalTr*6)+' pasos completados · '+totalTr+' trackers · '+DATA.length+' campos</div>'+
+    '<div class="section-t">Reparto de trackers por etapa alcanzada</div><div class="dist">'+dist+'</div><div class="dist-legend">'+leg+'</div>'+
+    '<div class="section-t">Avance por campo</div><div class="flist">'+rows+'</div>';
+  return p;
+}
+function buildField(f){
+  const p=document.createElement('section'); p.className='panel';
+  const pct=fpct(f), sinMontar=f.total-v(f.counts[0]), completos=v(f.counts[5]);
+  const ej=f.ejemplo?'<span class="badge-ej">ejemplo</span>':'';
+  let html='<div class="panel-head"><h2>Campo '+f.id+'</h2><span class="meta">'+f.total+' trackers · '+pct+'% de avance · '+completos+' completos · '+sinMontar+' sin montar</span>'+ej+'</div>'+
+    '<div class="seq-note">Recorrido secuencial: cada paso requiere haber liberado el anterior.</div><div class="funnel">';
+  STEPS.forEach((st,i)=>{ const c=f.counts[i]; const cf=(c===null||c===''||c===undefined); const w=cf?0:Math.round(Number(c)/f.total*100);
+    html+='<div class="step'+(cf?' confirm':'')+'"><div class="sn">'+(i+1)+'</div><div class="sbody">'+
+      '<div class="srow"><div class="slbl"><b>'+st.grp+'</b> <span>· '+st.lbl+'</span></div><div class="sval">'+(cf?'—':c)+'<span class="of"> / '+f.total+'</span></div></div>'+
+      '<div class="sbar"><div class="sfill" style="width:'+w+'%;background:'+STAGE_COL[i+1]+'"></div></div></div></div>'; });
+  html+='</div><div class="grid-title">Estado por tracker</div><div class="grid">';
+  for(let i=0;i<f.total;i++){ const n=i+1, s=stage(f,i), bl=s===0; let segs='';
+    for(let k=0;k<6;k++) segs+='<span style="background:'+(k<s?STAGE_COL[k+1]:'var(--track)')+'"></span>';
+    html+='<div class="tr'+(bl?' blocked':'')+'"><div class="tr-top"><b>'+n+'</b><span style="color:'+(bl?'var(--block-d)':'var(--ink-3)')+'">'+s+'/6</span></div><div class="tr-seg">'+segs+'</div></div>'; }
+  html+='</div><div class="legend">';
+  for(let s=0;s<7;s++) html+='<span class="lg"><span class="sw" style="background:'+STAGE_COL[s]+'"></span>'+STAGE_LBL[s]+'</span>';
+  html+='</div>';
+  p.innerHTML=html; return p;
+}
+
+/* ---------- Editor ---------- */
+const editor=document.getElementById('editor'), edBody=document.getElementById('edBody');
+document.getElementById('editToggle').onclick=()=>{ editor.classList.toggle('open'); if(editor.classList.contains('open')) fillEditor(); };
+
+function fillEditor(){
+  edBody.innerHTML='';
+  DATA.forEach(f=>edBody.appendChild(edRow(f)));
+}
+function edRow(f){
+  f=f||{id:'',total:'',counts:['','','','','','']};
+  const tr=document.createElement('tr');
+  const cell=(html)=>{const td=document.createElement('td'); td.innerHTML=html; return td;};
+  tr.appendChild(cell('<input class="id" type="number" min="1" value="'+(f.id??'')+'">'));
+  tr.appendChild(cell('<input class="total" type="number" min="0" value="'+(f.total??'')+'">'));
+  for(let i=0;i<6;i++){ const c=f.counts&&f.counts[i]; tr.appendChild(cell('<input type="number" min="0" value="'+((c===null||c===undefined)?'':c)+'">')); }
+  const ejTd=document.createElement('td'); ejTd.innerHTML='<input type="checkbox" '+(f.ejemplo?'checked':'')+'>'; tr.appendChild(ejTd);
+  const delTd=document.createElement('td'); delTd.innerHTML='<button class="ed-del" title="Eliminar">&times;</button>';
+  delTd.querySelector('button').onclick=()=>tr.remove(); tr.appendChild(delTd);
+  return tr;
+}
+document.getElementById('edAdd').onclick=()=>edBody.appendChild(edRow());
+
+function readEditor(){
+  const out=[]; let warn=false;
+  [...edBody.children].forEach(tr=>{
+    const ins=tr.querySelectorAll('input');
+    const id=ins[0].value===''?'':Number(ins[0].value);
+    const total=ins[1].value===''?0:Number(ins[1].value);
+    const counts=[]; let prev=Infinity;
+    for(let i=0;i<6;i++){ const raw=ins[2+i].value; const val=raw===''?null:Number(raw);
+      ins[2+i].parentElement.classList.toggle('warn', val!==null && (val>prev || val>total));
+      if(val!==null && (val>prev || val>total)) warn=true;
+      if(val!==null) prev=val;
+      counts.push(val); }
+    const ejemplo=ins[8].checked;
+    if(id!==''||total) out.push(ejemplo?{id,total,counts,ejemplo:true}:{id,total,counts});
+  });
+  document.getElementById('edWarn').classList.toggle('show',warn);
+  document.getElementById('edWarn').textContent=warn?'Aviso: algún paso supera al anterior o al total. Revisa que la secuencia sea descendente (cada número ≤ al previo).':'';
+  return out;
+}
+document.getElementById('edApply').onclick=()=>{ DATA=readEditor(); render(0); flash('Vista actualizada'); };
+
+function serialize(){
+  const lines=DATA.map(f=>{ const c='['+f.counts.map(x=>x===null?'null':x).join(', ')+']';
+    return '  { id:'+f.id+', total:'+f.total+', counts:'+c+(f.ejemplo?', ejemplo:true':'')+' },'; }).join('\n');
+  return '/* Datos del dashboard — editado el '+new Date().toLocaleString()+' */\nwindow.DATOS = [\n'+lines+'\n];\n';
+}
+document.getElementById('edDownload').onclick=()=>{
+  DATA=readEditor();
+  const blob=new Blob([serialize()],{type:'text/javascript'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='datos.js'; a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+  flash('datos.js descargado');
+};
+document.getElementById('edCopy').onclick=async()=>{ DATA=readEditor();
+  try{ await navigator.clipboard.writeText(serialize()); flash('Copiado al portapapeles'); }catch(e){ flash('Copia manual: revisa la consola'); console.log(serialize()); } };
+function flash(t){ const m=document.getElementById('edMsg'); m.textContent=t; setTimeout(()=>m.textContent='',2200); }
+
+document.getElementById('foot').textContent='Solo editas datos.js (a mano o con «Editar datos»). El index.html no se toca. Ctrl/Cmd+P para imprimir o guardar en PDF.';
+render(0);
 </script>
 </body>
 </html>
