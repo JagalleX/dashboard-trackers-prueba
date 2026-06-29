@@ -14,7 +14,7 @@
    Tras editar: guarda y haz commit. La página se actualiza sola.
    ============================================================ */
 window.DATOS = [
-  { id:21, total:51, counts:[47, 47, 47, null, null, null] },
-  { id:22, total:60, counts:[51, 48, 45, 30, 22, 15], ejemplo:true },
-  { id:23, total:44, counts:[44, 40, 38, 25, 18, 9],  ejemplo:true },
+  { id:14, total:51, counts:[47, 47, 47, null, null, null] },
+  { id:15, total:60, counts:[51, 48, 45, 30, 22, 15], ejemplo:true },
+  { id:16, total:44, counts:[44, 40, 38, 25, 18, 9],  ejemplo:true },
 ];
