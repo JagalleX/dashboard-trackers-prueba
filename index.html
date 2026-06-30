@@ -16,7 +16,6 @@
   body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     background:var(--bg); color:var(--ink); line-height:1.5; font-variant-numeric:tabular-nums lining-nums;}
   .wrap{max-width:1080px; margin:0 auto; padding:0 20px 64px;}
-
   header{background:var(--ink); color:#fff; padding:22px 0 20px;}
   .header-inner{max-width:1080px; margin:0 auto; padding:0 20px; display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:16px;}
   .title{font-size:19px; font-weight:600; letter-spacing:-0.01em;}
@@ -25,7 +24,6 @@
   .global .stat{text-align:right;}
   .global .num{font-size:26px; font-weight:600; line-height:1; letter-spacing:-0.02em;}
   .global .lbl{font-size:11px; color:#b6bac2; text-transform:uppercase; letter-spacing:0.06em; margin-top:5px;}
-
   .toolbar{display:flex; justify-content:flex-end; padding:14px 0 0;}
   .btn{appearance:none; font-family:inherit; font-size:13px; font-weight:600; cursor:pointer;
     border:1px solid var(--border-2); background:var(--surface); color:var(--ink);
@@ -33,7 +31,6 @@
   .btn:hover{border-color:var(--accent);}
   .btn.primary{background:var(--accent); border-color:var(--accent); color:#fff;}
   .btn.primary:hover{background:#0c5a47;}
-
   .tabs{display:flex; gap:6px; flex-wrap:wrap; padding:14px 0 4px; border-bottom:1px solid var(--border); margin-bottom:24px;}
   .tab{appearance:none; border:1px solid var(--border-2); background:var(--surface); border-radius:10px;
     padding:9px 14px 8px; cursor:pointer; min-width:118px; text-align:left; transition:border-color .12s; color:var(--ink); font-family:inherit;}
@@ -44,9 +41,7 @@
   .tab .t-sub{font-size:11px; color:var(--ink-3); margin:2px 0 7px;}
   .tab .t-bar{height:5px; border-radius:3px; background:var(--track); overflow:hidden;}
   .tab .t-fill{height:100%; background:var(--accent); border-radius:3px;}
-
   .panel{display:none;} .panel.active{display:block;}
-
   .hero{display:flex; align-items:baseline; gap:14px; margin-bottom:6px;}
   .hero .big{font-size:52px; font-weight:700; letter-spacing:-0.03em; line-height:1;}
   .hero .big-lbl{font-size:14px; color:var(--ink-2);}
@@ -56,19 +51,16 @@
   .dist span{display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; min-width:0;}
   .dist-legend{display:flex; flex-wrap:wrap; gap:6px 14px; font-size:11px; color:var(--ink-2); margin-bottom:30px;}
   .dist-legend .lg{display:flex; align-items:center; gap:6px;} .dist-legend .sw{width:11px; height:11px; border-radius:3px;}
-
   .flist{display:flex; flex-direction:column; gap:10px;}
   .frow{display:grid; grid-template-columns:120px 1fr 48px; align-items:center; gap:14px; background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:11px 14px;}
   .frow .fn{font-size:14px; font-weight:600;} .frow .fn small{display:block; font-size:11px; color:var(--ink-3); font-weight:400;}
   .frow .mini{display:flex; gap:2px; height:14px;} .frow .mini span{flex:1; border-radius:2px; background:var(--track);}
   .frow .fpct{font-size:15px; font-weight:600; text-align:right;}
-
   .panel-head{display:flex; align-items:baseline; gap:12px; margin-bottom:6px; flex-wrap:wrap;}
   .panel-head h2{font-size:22px; font-weight:600; letter-spacing:-0.02em;}
   .panel-head .meta{font-size:13px; color:var(--ink-2);}
   .badge-ej{font-size:11px; font-weight:600; color:var(--block-d); background:var(--block-bg); padding:3px 9px; border-radius:20px;}
   .seq-note{font-size:12px; color:var(--ink-3); margin-bottom:22px;}
-
   .funnel{display:flex; flex-direction:column; gap:8px; margin-bottom:30px;}
   .step{display:grid; grid-template-columns:26px 1fr; gap:12px; align-items:center;}
   .step .sn{width:26px; height:26px; border-radius:50%; background:var(--accent); color:#fff; font-size:13px; font-weight:600; display:flex; align-items:center; justify-content:center;}
@@ -79,7 +71,6 @@
   .step .sval{font-size:13px; font-weight:600;} .step .sval .of{color:var(--ink-3); font-weight:400;}
   .step .sbar{height:9px; border-radius:5px; background:var(--track); overflow:hidden;}
   .step .sfill{height:100%; border-radius:5px;}
-
   .grid-title{font-size:13px; font-weight:600; color:var(--ink-2); margin-bottom:12px;}
   .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(54px,1fr)); gap:9px;}
   .tr{border:1px solid var(--border); border-radius:8px; background:var(--surface); overflow:hidden; padding-bottom:4px;}
@@ -88,11 +79,8 @@
   .tr .tr-top b{font-weight:600;}
   .tr .tr-seg{display:flex; gap:1.5px; height:10px; padding:0 4px;}
   .tr .tr-seg span{flex:1; border-radius:1px; background:var(--track);}
-
   .legend{display:flex; flex-wrap:wrap; gap:6px 14px; margin-top:20px; font-size:11px; color:var(--ink-2);}
   .legend .lg{display:flex; align-items:center; gap:6px;} .legend .sw{width:11px; height:11px; border-radius:3px;}
-
-  /* Editor */
   .editor{display:none; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px 18px 16px; margin:18px 0 4px;}
   .editor.open{display:block;}
   .editor h3{font-size:15px; font-weight:600; margin-bottom:4px;}
@@ -102,7 +90,7 @@
   table.ed th{font-size:10px; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-3); font-weight:600; padding:0 6px 8px; text-align:center; white-space:nowrap;}
   table.ed th.l{text-align:left;}
   table.ed td{padding:3px 6px; text-align:center;}
-  table.ed input[type=number],table.ed input[type=text]{width:54px; font-family:inherit; font-size:13px; text-align:center;
+  table.ed input[type=number]{width:54px; font-family:inherit; font-size:13px; text-align:center;
     border:1px solid var(--border-2); border-radius:7px; padding:6px 4px; background:#fff; color:var(--ink); font-variant-numeric:tabular-nums;}
   table.ed input.id{width:48px;} table.ed input.total{width:54px;}
   table.ed input:focus{outline:none; border-color:var(--accent);}
@@ -113,11 +101,7 @@
   .ed-msg{font-size:12px; color:var(--accent); margin-left:4px;}
   .ed-warn-txt{font-size:12px; color:var(--block-d); margin-top:8px; display:none;}
   .ed-warn-txt.show{display:block;}
-
   .footer-note{margin-top:34px; padding-top:18px; border-top:1px solid var(--border); font-size:12px; color:var(--ink-3);}
-  .banner{background:var(--block-bg); color:var(--block-d); font-size:12px; padding:8px 12px; border-radius:8px; margin:14px 0 0; display:none;}
-  .banner.show{display:block;}
-
   @media (max-width:560px){ .global .num{font-size:22px;} .hero .big{font-size:42px;} .frow{grid-template-columns:88px 1fr 42px; gap:10px;} }
   @media print{
     body{background:#fff;} header{background:#fff; color:var(--ink); border-bottom:2px solid var(--ink);}
@@ -139,11 +123,10 @@
 
 <div class="wrap">
   <div class="toolbar"><button class="btn" id="editToggle">Editar datos</button></div>
-  <div class="banner" id="banner">No se encontró <b>datos.js</b>, se muestran datos de ejemplo. Sube el archivo <b>datos.js</b> junto a este HTML.</div>
 
   <div class="editor" id="editor">
     <h3>Editar datos</h3>
-    <div class="ed-help">Escribe el nº de trackers que han completado cada paso. Deja la casilla vacía si aún no hay dato. Al terminar, descarga <b>datos.js</b> y súbelo al repositorio.</div>
+    <div class="ed-help">Escribe el nº de trackers que han completado cada paso. Casilla vacía = "por confirmar". Al terminar, pulsa <b>Copiar datos</b> y pega el resultado en el bloque de datos del archivo (o usa <b>Descargar index.html</b> para bajar el archivo completo ya actualizado).</div>
     <div class="ed-scroll">
       <table class="ed">
         <thead><tr>
@@ -158,8 +141,8 @@
     <div class="ed-actions">
       <button class="btn" id="edAdd">+ Añadir campo</button>
       <button class="btn" id="edApply">Ver cambios</button>
-      <button class="btn primary" id="edDownload">Descargar datos.js</button>
-      <button class="btn" id="edCopy">Copiar</button>
+      <button class="btn" id="edCopy">Copiar datos</button>
+      <button class="btn primary" id="edDownload">Descargar index.html</button>
       <span class="ed-msg" id="edMsg"></span>
     </div>
     <div class="ed-warn-txt" id="edWarn"></div>
@@ -171,6 +154,38 @@
 </div>
 
 <script>
+/* =================================================================
+   ====================  EDITA AQUÍ TUS DATOS  =====================
+   Una línea por campo:
+     id     = número del campo
+     total  = nº total de trackers
+     counts = trackers que han COMPLETADO cada paso, en orden:
+              [1 mont.estr, 2 lib.int.estr, 3 lib.ext.estr,
+               4 mont.mód,  5 lib.int.mód,  6 lib.ext.mód]
+              Secuencial: cada número debe ser ≤ al anterior.
+              Usa null en pasos sin dato → "por confirmar".
+     ejemplo: true  (opcional) marca el campo como muestra
+   ================================================================= */
+/*DATA-START*/
+const DATA_DEFAULT = [
+  { id:14, total:98, counts:[0, 0, 0, 0, 0, 0], ejemplo:true },
+  { id:15, total:97, counts:[0, 0, 0, 0, 0, 0], ejemplo:true },
+  { id:16, total:96, counts:[0, 0, 0, 0, 0, 0], ejemplo:true },
+  { id:17, total:97, counts:[0, 0, 0, 0, 0, 0], ejemplo:true },
+  { id:18, total:97, counts:[0, 0, 0, 0, 0, 0], ejemplo:true },
+  { id:19, total:105, counts:[0, 0, 0, 0, 0, 0] },
+  { id:20, total:98, counts:[97, 97, 97, 0, 0, 0] },
+  { id:21, total:50, counts:[47, 47, 47, 47, 0, 0] },
+  { id:22, total:51, counts:[0, 0, 0, 0, 0, 0] },
+  { id:23, total:97, counts:[0, 0, 0, 0, 0, 0] },
+  { id:24, total:48, counts:[0, 0, 0, 0, 0, 0] },
+  { id:25, total:105, counts:[103, 0, 0, 0, 0, 0] },
+  { id:26, total:51, counts:[0, 0, 0, 0, 0, 0] },
+  { id:27, total:100, counts:[62, 0, 0, 0, 0, 0] },
+];
+/*DATA-END*/
+/* ================  FIN DE TUS DATOS — no toques abajo  =========== */
+
 const STEPS=[
   {grp:'Estructura',lbl:'Montaje'},{grp:'Estructura',lbl:'Liberación interna'},{grp:'Estructura',lbl:'Liberación externa'},
   {grp:'Módulos',lbl:'Montaje'},{grp:'Módulos',lbl:'Liberación interna'},{grp:'Módulos',lbl:'Liberación externa'}];
@@ -178,9 +193,7 @@ const STAGE_COL=['#ef9f27','#9fe1cb','#6fd0b0','#3fbe94','#1d9e75','#14805f','#0
 const STAGE_TXT=['#854f0b','#0f6e56','#0f6e56','#0f6e56','#fff','#fff','#fff'];
 const STAGE_LBL=['Sin montar','1 · Montaje estr.','2 · Lib. int. estr.','3 · Lib. ext. estr.','4 · Montaje mód.','5 · Lib. int. mód.','6 · Completo'];
 
-const FALLBACK=[{id:21,total:51,counts:[47,47,47,null,null,null]},{id:22,total:60,counts:[51,48,45,30,22,15],ejemplo:true},{id:23,total:44,counts:[44,40,38,25,18,9],ejemplo:true}];
-let DATA = (window.DATOS && Array.isArray(window.DATOS) && window.DATOS.length) ? JSON.parse(JSON.stringify(window.DATOS)) : JSON.parse(JSON.stringify(FALLBACK));
-if(!(window.DATOS && Array.isArray(window.DATOS) && window.DATOS.length)) document.getElementById('banner').classList.add('show');
+let DATA = JSON.parse(JSON.stringify(DATA_DEFAULT));
 
 const v=x=>(x===null||x===undefined||x==='')?0:Number(x);
 const doneSteps=f=>f.counts.reduce((a,c)=>a+v(c),0);
@@ -197,11 +210,9 @@ function render(active){
   globalEl.innerHTML='<div class="stat"><div class="num">'+DATA.length+'</div><div class="lbl">Campos</div></div>'+
     '<div class="stat"><div class="num">'+totalTr+'</div><div class="lbl">Trackers</div></div>'+
     '<div class="stat"><div class="num">'+pct+'%</div><div class="lbl">Avance global</div></div>';
-
   const rtab=document.createElement('button'); rtab.className='tab resumen';
   rtab.innerHTML='<div class="t-name">Resumen general</div>'; rtab.onclick=()=>select(0);
   tabsEl.appendChild(rtab); panelsEl.appendChild(buildResumen(totalTr,done,pct));
-
   DATA.forEach((f,idx)=>{
     const p=fpct(f);
     const tab=document.createElement('button'); tab.className='tab';
@@ -216,7 +227,6 @@ function select(i){
   [...tabsEl.children].forEach((t,k)=>t.classList.toggle('active',k===i));
   [...panelsEl.children].forEach((p,k)=>p.classList.toggle('active',k===i));
 }
-
 function buildResumen(totalTr,done,pct){
   const p=document.createElement('section'); p.className='panel';
   const buckets=[0,0,0,0,0,0,0];
@@ -258,11 +268,7 @@ function buildField(f){
 /* ---------- Editor ---------- */
 const editor=document.getElementById('editor'), edBody=document.getElementById('edBody');
 document.getElementById('editToggle').onclick=()=>{ editor.classList.toggle('open'); if(editor.classList.contains('open')) fillEditor(); };
-
-function fillEditor(){
-  edBody.innerHTML='';
-  DATA.forEach(f=>edBody.appendChild(edRow(f)));
-}
+function fillEditor(){ edBody.innerHTML=''; DATA.forEach(f=>edBody.appendChild(edRow(f))); }
 function edRow(f){
   f=f||{id:'',total:'',counts:['','','','','','']};
   const tr=document.createElement('tr');
@@ -276,7 +282,6 @@ function edRow(f){
   return tr;
 }
 document.getElementById('edAdd').onclick=()=>edBody.appendChild(edRow());
-
 function readEditor(){
   const out=[]; let warn=false;
   [...edBody.children].forEach(tr=>{
@@ -292,29 +297,37 @@ function readEditor(){
     const ejemplo=ins[8].checked;
     if(id!==''||total) out.push(ejemplo?{id,total,counts,ejemplo:true}:{id,total,counts});
   });
-  document.getElementById('edWarn').classList.toggle('show',warn);
-  document.getElementById('edWarn').textContent=warn?'Aviso: algún paso supera al anterior o al total. Revisa que la secuencia sea descendente (cada número ≤ al previo).':'';
+  const w=document.getElementById('edWarn');
+  w.classList.toggle('show',warn);
+  w.textContent=warn?'Aviso: algún paso supera al anterior o al total. La secuencia debe ir de mayor a menor (cada número ≤ al previo).':'';
   return out;
 }
 document.getElementById('edApply').onclick=()=>{ DATA=readEditor(); render(0); flash('Vista actualizada'); };
 
-function serialize(){
-  const lines=DATA.map(f=>{ const c='['+f.counts.map(x=>x===null?'null':x).join(', ')+']';
+function serializeData(){
+  return DATA.map(f=>{ const c='['+f.counts.map(x=>x===null?'null':x).join(', ')+']';
     return '  { id:'+f.id+', total:'+f.total+', counts:'+c+(f.ejemplo?', ejemplo:true':'')+' },'; }).join('\n');
-  return '/* Datos del dashboard — editado el '+new Date().toLocaleString()+' */\nwindow.DATOS = [\n'+lines+'\n];\n';
 }
+document.getElementById('edCopy').onclick=async()=>{ DATA=readEditor();
+  const text='const DATA_DEFAULT = [\n'+serializeData()+'\n];';
+  try{ await navigator.clipboard.writeText(text); flash('Datos copiados — pégalos en el bloque DATA del archivo'); }
+  catch(e){ console.log(text); flash('Copia manual: revisa la consola (F12)'); } };
+
 document.getElementById('edDownload').onclick=()=>{
   DATA=readEditor();
-  const blob=new Blob([serialize()],{type:'text/javascript'});
-  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='datos.js'; a.click();
+  // reset DOM al estado inicial para que el archivo descargado quede limpio
+  globalEl.innerHTML=''; tabsEl.innerHTML=''; panelsEl.innerHTML=''; edBody.innerHTML=''; editor.classList.remove('open');
+  let html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
+  html=html.replace(/\/\*DATA-START\*\/[\s\S]*?\/\*DATA-END\*\//,
+    '/*DATA-START*/\nconst DATA_DEFAULT = [\n'+serializeData()+'\n];\n/*DATA-END*/');
+  const blob=new Blob([html],{type:'text/html'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='index.html'; a.click();
   setTimeout(()=>URL.revokeObjectURL(a.href),1000);
-  flash('datos.js descargado');
+  render(0); flash('index.html descargado');
 };
-document.getElementById('edCopy').onclick=async()=>{ DATA=readEditor();
-  try{ await navigator.clipboard.writeText(serialize()); flash('Copiado al portapapeles'); }catch(e){ flash('Copia manual: revisa la consola'); console.log(serialize()); } };
-function flash(t){ const m=document.getElementById('edMsg'); m.textContent=t; setTimeout(()=>m.textContent='',2200); }
+function flash(t){ const m=document.getElementById('edMsg'); m.textContent=t; setTimeout(()=>m.textContent='',2600); }
 
-document.getElementById('foot').textContent='Solo editas datos.js (a mano o con «Editar datos»). El index.html no se toca. Ctrl/Cmd+P para imprimir o guardar en PDF.';
+document.getElementById('foot').textContent='Todo está en un solo archivo. Para actualizar: edita el bloque de datos del inicio (entre EDITA AQUÍ y FIN) y haz commit. Ctrl/Cmd+P para imprimir o guardar en PDF.';
 render(0);
 </script>
 </body>
